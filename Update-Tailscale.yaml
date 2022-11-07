@@ -2,6 +2,7 @@
 - name: Playbook to Install Packages
   hosts:
     - debian
+    - proxmox
   tasks:
   - name: Update Tailscale
     package:
