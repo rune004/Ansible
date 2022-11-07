@@ -1,11 +1,11 @@
 ---
-    - name: Playbook to Install Packages
-      hosts:
-        - Debian
-      tasks:
-      - name: Install nginx and mariadb
-        package:
-          name:
-            - nginx
-            - mariadb-server
-          state: present
+- name: Playbook to Install Packages
+  hosts:
+    - Debian
+  tasks:
+  - name: Install nginx and mariadb
+    package:
+      name:
+        - nginx
+        - mariadb-server
+      state: present
