@@ -3,9 +3,9 @@
   hosts:
     - debian
   tasks:
-  - name: Install nginx and mariadb
+  - name: Install php and mariadb
     package:
       name:
-        - nginx
+        - php
         - mariadb-server
       state: present
