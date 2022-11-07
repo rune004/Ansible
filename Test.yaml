@@ -3,9 +3,8 @@
   hosts:
     - debian
   tasks:
-  - name: Install nginx and mariadb
+  - name: Update Tailscale
     package:
       name:
-        - nginx
-        - mariadb-server
+        - tailscale
       state: present
