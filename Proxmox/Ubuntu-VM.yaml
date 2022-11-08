@@ -1,5 +1,5 @@
 - name: Proxmox stuff
-  hosts: all
+  hosts: proxmox
   vars:
     name: ubuntu
   tasks:
@@ -11,7 +11,7 @@
         api_host    : 100.123.222.8
         clone       : ubuntutemplate   # The VM source
         name        : "{{ yeppers }}"  # The target VM name
-        node        : proxmox
+        node        : pve
         storage     : local-lvm
         format      : qcow2
         timeout     : 500  # Note: The task can take a while. Adapt
@@ -21,7 +21,7 @@
         api_password: 2f17327a-8fc1-4dfc-b2d1-de1a30d15d86
         api_host: 100.123.222.8
         name: "{{ yeppers }}"
-        node: proxmox
+        node: pve
         state: started
     - name: firststuff
       shell: qm list | grep "{{ yeppers }}" | awk '{ print $1 }'
