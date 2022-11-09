@@ -1,0 +1,31 @@
+- name: Proxmox stuff
+  hosts: proxmox
+  vars:
+    name: ubuntu
+  tasks:
+    - set_fact:
+        yeppers: "ubuntu-{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
+    - proxmox_kvm:
+        user        : root@pam
+        password    : 2f17327a-8fc1-4dfc-b2d1-de1a30d15d86
+        host        : 100.123.222.8
+        clone       : ubuntutemplate   # The VM source
+        name        : "{{ yeppers }}"  # The target VM name
+        node        : pve
+        storage     : local-lvm
+        format      : qcow2
+        timeout     : 500  # Note: The task can take a while. Adapt
+    - name: start vm
+      proxmox_kvm:
+        user        : root@pam
+        password    : 2f17327a-8fc1-4dfc-b2d1-de1a30d15d86
+        host        : 100.123.222.8
+        name: "{{ yeppers }}"
+        node: pve
+        state: started
+    - name: firststuff
+      shell: qm list | grep "{{ yeppers }}" | awk '{ print $1 }'
+      register: thevmid
+    - name: debug
+      debug:
+        var: thevmid.stdout 
