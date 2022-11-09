@@ -14,4 +14,4 @@
         node        : pve
         storage     : Windows-Storage
         format      : qcow2
-        timeout     : 500  # Note: The task can take a while. Adapt
+        timeout     : 1000  # Note: The task can take a while. Adapt
