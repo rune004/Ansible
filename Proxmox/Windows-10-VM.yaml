@@ -12,6 +12,6 @@
         clone       : windowstemplate   # The VM source
         name        : "{{ yeppers }}"  # The target VM name
         node        : pve
-        storage     : local-lvm
+        storage     : Windows
         format      : qcow2
         timeout     : 500  # Note: The task can take a while. Adapt
