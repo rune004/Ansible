@@ -1,0 +1,47 @@
+- name: Play to Install and Manage MySQL 8.0 AlmaLinux 8
+  hosts: debian
+  become: false 
+  vars: 
+    - ansible_python_interpreter: /usr/bin/python3
+    - password: Password1
+  tasks:
+    - name: install python mysql connector and mysql client and server
+      become: true
+      dnf:
+        - name:
+          - python3-PyMySQL
+          - mysql-server
+          - mysql state: present
+        - name: Manage MySQL Service
+          become: true
+          service:
+            name: mysqld
+            state: started enabled:
+            true
+        - name: Manage MySQL root password
+          become: true
+          mysql_user:
+            login_user: root
+            login_password: "{{ password }}"
+            name: root
+            password: "{{ password }}"
+            check_implicit_admin: true
+        - name: import database
+          mysql_db:
+            login_user: root
+            login_password: "{{ password }}"
+            name: all
+            state: import
+            target: "{{ item }}"
+          loop:
+            - /vagrant/sakila-schema.sql
+            - /vagrant/sakila-data.sql
+        - name: create new mysql user
+          mysql_user:
+            name: tux
+            host: localhost
+            password: "{{ password }}"
+            login_user: root
+            login_password: "{{ password }}"
+            priv: "sakila.*:SELECT"
+            update_password: on_create
