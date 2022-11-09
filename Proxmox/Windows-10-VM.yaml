@@ -1,15 +1,15 @@
 - name: Proxmox stuff
   hosts: proxmox
   vars:
-    name: ubuntu
+    name: windows
   tasks:
     - set_fact:
-        yeppers: "ubuntu-{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
+        yeppers: "windows-{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
     - proxmox_kvm:
         api_user    : root@pam
         api_password: Chral.b62621718
         api_host    : 100.123.222.8
-        clone       : ubuntutemplate   # The VM source
+        clone       : windowstemplate   # The VM source
         name        : "{{ yeppers }}"  # The target VM name
         node        : pve
         storage     : local-lvm
