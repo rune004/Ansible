@@ -1,7 +1,5 @@
 - name: Proxmox stuff
   hosts: proxmox
-  vars:
-    name: windows
   tasks:
     - set_fact:
         yeppers: "windows-{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"

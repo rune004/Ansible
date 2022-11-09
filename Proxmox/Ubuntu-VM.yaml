@@ -1,7 +1,5 @@
 - name: Proxmox stuff
   hosts: proxmox
-  vars:
-    name: ubuntu
   tasks:
     - set_fact:
         yeppers: "ubuntu-{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
