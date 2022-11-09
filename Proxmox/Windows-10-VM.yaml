@@ -15,16 +15,3 @@
         storage     : Windows-Storage
         format      : qcow2
         timeout     : 500  # Note: The task can take a while. Adapt
-  tasks:
-    - set_fact:
-        yeppers: "windows-{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
-    - proxmox_kvm:
-        api_user    : root@pam
-        api_password: Password
-        api_host    : 100.123.222.8
-        clone       : windowstemplate   # The VM source
-        name        : "{{ yeppers }}"  # The target VM name
-        node        : pve
-        storage     : Windows-Storage
-        format      : qcow2
-        timeout     : 500  # Note: The task can take a while. Adapt
