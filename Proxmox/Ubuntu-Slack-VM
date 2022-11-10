@@ -60,7 +60,7 @@
           `IP ADDRESS`: "{{ theip.stdout}}"
           'URL': ssh://root@{{ theip.stdout }}
           --------------------------------------
-        channel: '#ansible'
+        channel: '#general'
         color: good
         username: 'Ansible on {{ inventory_hostname }}'
         link_names: 0
