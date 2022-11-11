@@ -9,3 +9,8 @@ ssh-add ~/.ssh/id_rsa
 
 eval `ssh-agent -s`
 ssh-add
+
+
+<h5> Push SSH key to nodes </h5>
+
+ssh-copy-id -i /home/rune/.ssh/id_rsa root@192.168.1.76
