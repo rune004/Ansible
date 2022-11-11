@@ -13,3 +13,6 @@
         storage     : Windows-Storage
         format      : qcow2
         timeout     : 1000  # Note: The task can take a while. Adapt
+    - name: Pause for 1 minute to build app cache
+      ansible.builtin.pause:
+        minutes: 1
