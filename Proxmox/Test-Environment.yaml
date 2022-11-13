@@ -1,0 +1,140 @@
+- name: Test Environment
+  hosts: proxmox
+  tasks:
+    - set_fact:
+        Win-Srv1: "Windows-ADDC-1" # The target VM name
+        Win-Srv2: "Windows-ADDC-2" # The target VM name
+        Win-10-1: "Windows-Client-1" # The target VM name
+        Win-10-2: "Windows-Client-2" # The target VM name
+        Win-10-3: "Windows-Client-3" # The target VM name
+        CloneWin-Srv1: "windowsservertemplate" # The VM source
+        CloneWin-Srv2: "windowsservertemplate2" # The VM source
+        CloneWin-10-1: "windowstemplate" # The VM source
+        CloneWin-10-2: "windowstemplate2" # The VM source
+        CloneWin-10-3: "windowstemplate3" # The VM source
+        apipass: "*" # The Password Used For Signing In To Proxmox
+        apihost: "100.124.109.92" # The Proxmox Host IP Address
+        apiuser: "root@pam" # The Proxmox User With Access
+        prox-storage: "vms-ssd" # The Target Storage On Proxmox
+        prox-node: "main" # The Target Node In The Proxmox Cluster
+        disk-format: "qcow2" # The Format For The Disk .img
+        timeout: "500" # Note: The Task Can Take a While. Adapt
+        pause: "10" # How long The Pause Between Tasks Is (Recommend to adjust if needed depenting on the server)
+        state: "started" # The State The VM Will Be Put Into After Cloning (Can also be present if you don't want more then one, can also be skipped if none is needed)
+    - proxmox_kvm:
+        api_user    : "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host    : "{{ apihost }}"
+        clone       : "{{ CloneWin-Srv1 }}"   
+        name        : "{{ Win-Srv1 }}"  
+        node        : "{{ main }}"
+        storage     : "{{ prox-storage }}"
+        format      : "{{ disk-format }}"
+        timeout     : "{{ timeout }}"  
+    - name: Pause for "{{ pause }}" seconds to clone the "{{ pause }}" 
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - name: start "{{ Win-Srv1 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win-Srv1 }}"
+        node: "{{ main }}"
+        state: "{{ state }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ pause }}" 
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - proxmox_kvm:
+        api_user    : "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host    : "{{ apihost }}"
+        clone       : "{{ CloneWin-Srv2 }}"   
+        name        : "{{ Win-Srv2 }}"  
+        node        : "{{ main }}"
+        storage     : "{{ prox-storage }}"
+        format      : "{{ disk-format }}"
+        timeout     : "{{ timeout }}"  
+    - name: Pause for "{{ pause }}" seconds to clone the "{{ pause }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - name: start "{{ Win-Srv2 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win-Srv2 }}"
+        node: "{{ main }}"
+        state: "{{ state }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ pause }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - proxmox_kvm:
+        api_user    : "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host    : "{{ apihost }}"
+        clone       : "{{ CloneWin-10-1 }}"  
+        name        : "{{ Win-10-1 }}"  
+        node        : "{{ main }}"
+        storage     : "{{ prox-storage }}"
+        format      : "{{ disk-format }}"
+        timeout     : "{{ timeout }}"  
+    - name: Pause for "{{ pause }}" seconds to clone the "{{ Win-10-1 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - name: start "{{ Win-10-1 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win-10-1 }}"
+        node: "{{ main }}"
+        state: "{{ state }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ Win-10-1 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - proxmox_kvm:
+        api_user    : "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host    : "{{ apihost }}"
+        clone       : "{{ CloneWin-10-2 }}"   
+        name        : "{{ Win-10-2 }}"  
+        node        : "{{ main }}"
+        storage     : "{{ prox-storage }}"
+        format      : "{{ disk-format }}"
+        timeout     : "{{ timeout }}"  
+    - name: Pause for "{{ pause }}" seconds to clone the "{{ Win-10-2 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - name: start "{{ Win-10-2 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win-10-2 }}"
+        node: "{{ main }}"
+        state: "{{ state }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ Win-10-2 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"        
+    - proxmox_kvm:
+        api_user    : "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host    : "{{ apihost }}"
+        clone       : "{{ CloneWin-10-3 }}"   
+        name        : "{{ Win-10-3 }}"  
+        node        : "{{ main }}"
+        storage     : "{{ prox-storage }}"
+        format      : "{{ disk-format }}"
+        timeout     : "{{ timeout }}" 
+    - name: Pause for "{{ pause }}" seconds to clone the "{{ Win-10-3 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - name: start "{{ Win-10-3 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win-10-3 }}"
+        node: "{{ main }}"
+        state: "{{ state }}"

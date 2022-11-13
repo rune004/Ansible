@@ -39,7 +39,7 @@
         storage     : vms-ssd
         format      : qcow2
         timeout     : 500  # Note: The task can take a while. Adapt
-    - name: Pause for 1 minute to build app cache
+    - name: Pause for 1 seconds to start the ****
       ansible.builtin.pause:
         seconds: 10
     - name: start vm
