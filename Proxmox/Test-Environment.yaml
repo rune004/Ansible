@@ -19,7 +19,7 @@
         prox_node: "main" # The Target Node In The Proxmox Cluster
         disk_format: "qcow2" # The Format For The Disk .img
         timeout: "500" # The Task Can Take a While. Adapt
-        pause: "10" # How long The Pause Between Tasks Is (Recommend to adjust if needed depenting on the server)
+        pause: "10" # How long The Pause Between Tasks Is (Recommend to adjust high if your server is not so strong)
         state: "started" # The State The VM Will Be Put Into After Cloning (Can also be present if you don't want more then one, can also be skipped if none is needed)
     - proxmox_kvm:
         api_user    : "{{ apiuser }}"
