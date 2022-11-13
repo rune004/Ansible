@@ -137,4 +137,4 @@
         api_host: "{{ apihost }}"
         name: "{{ Win_10_3 }}"
         node: "{{ main }}"
-        state: "{{ state }}"s
+        state: "{{ state }}"
