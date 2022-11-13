@@ -31,7 +31,7 @@
         storage     : "{{ prox_storage }}"
         format      : "{{ disk_format }}"
         timeout     : "{{ timeout }}"  
-    - name: Pause for "{{ pause }}" seconds to clone the "{{ pause }}" 
+    - name: Pause for "{{ pause }}" seconds to clone the "{{ Win_Srv1 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
     - name: start "{{ Win_Srv1 }}"
@@ -42,7 +42,7 @@
         name: "{{ Win_Srv1 }}"
         node: "{{ prox_node }}"
         state: "{{ state }}"
-    - name: Pause for "{{ pause }}" seconds to start the "{{ pause }}" 
+    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_Srv1 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
     - proxmox_kvm:
@@ -55,7 +55,7 @@
         storage     : "{{ prox_storage }}"
         format      : "{{ disk_format }}"
         timeout     : "{{ timeout }}"  
-    - name: Pause for "{{ pause }}" seconds to clone the "{{ pause }}"
+    - name: Pause for "{{ pause }}" seconds to clone the "{{ Win_Srv2 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
     - name: start "{{ Win_Srv2 }}"
@@ -66,7 +66,7 @@
         name: "{{ Win_Srv2 }}"
         node: "{{ prox_node }}"
         state: "{{ state }}"
-    - name: Pause for "{{ pause }}" seconds to start the "{{ pause }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_Srv2 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
     - proxmox_kvm:
