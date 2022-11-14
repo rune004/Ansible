@@ -34,6 +34,17 @@
     - name: Pause for "{{ pause }}" seconds to clone the "{{ Win_Srv1 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
+    - name: start "{{ Win_Srv1 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win_Srv1 }}"
+        node: "{{ prox_node }}"
+        state: "{{ state }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_Srv1 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
     - proxmox_kvm:
         api_user    : "{{ apiuser }}"
         api_password: "{{ apipass }}"
@@ -45,6 +56,17 @@
         format      : "{{ disk_format }}"
         timeout     : "{{ timeout }}"  
     - name: Pause for "{{ pause }}" seconds to clone the "{{ Win_Srv2 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
+    - name: start "{{ Win_Srv2 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win_Srv2 }}"
+        node: "{{ prox_node }}"
+        state: "{{ state }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_Srv2 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
     - proxmox_kvm:
@@ -60,6 +82,17 @@
     - name: Pause for "{{ pause }}" seconds to clone the "{{ Win-10-1 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
+    - name: start "{{ Win_10_1 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win_10_1 }}"
+        node: "{{ prox_node }}"
+        state: "{{ state }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_10_1 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"
     - proxmox_kvm:
         api_user    : "{{ apiuser }}"
         api_password: "{{ apipass }}"
@@ -73,6 +106,17 @@
     - name: Pause for "{{ pause }}" seconds to clone the "{{ Win_10_2 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
+    - name: start "{{ Win_10_2 }}"
+      proxmox_kvm:
+        api_user: "{{ apiuser }}"
+        api_password: "{{ apipass }}"
+        api_host: "{{ apihost }}"
+        name: "{{ Win_10_2 }}"
+        node: "{{ prox_node }}"
+        state: "{{ state }}"
+    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_10_2 }}"
+      ansible.builtin.pause:
+        seconds: "{{ pause }}"        
     - proxmox_kvm:
         api_user    : "{{ apiuser }}"
         api_password: "{{ apipass }}"
@@ -86,50 +130,6 @@
     - name: Pause for "{{ pause }}" seconds to clone the "{{ Win_10_3 }}"
       ansible.builtin.pause:
         seconds: "{{ pause }}"
-    - name: start "{{ Win_Srv1 }}"
-      proxmox_kvm:
-        api_user: "{{ apiuser }}"
-        api_password: "{{ apipass }}"
-        api_host: "{{ apihost }}"
-        name: "{{ Win_Srv1 }}"
-        node: "{{ prox_node }}"
-        state: "{{ state }}"
-    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_Srv1 }}"
-      ansible.builtin.pause:
-        seconds: "{{ pause }}"
-    - name: start "{{ Win_Srv2 }}"
-      proxmox_kvm:
-        api_user: "{{ apiuser }}"
-        api_password: "{{ apipass }}"
-        api_host: "{{ apihost }}"
-        name: "{{ Win_Srv2 }}"
-        node: "{{ prox_node }}"
-        state: "{{ state }}"
-    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_Srv2 }}"
-      ansible.builtin.pause:
-        seconds: "{{ pause }}"
-    - name: start "{{ Win_10_1 }}"
-      proxmox_kvm:
-        api_user: "{{ apiuser }}"
-        api_password: "{{ apipass }}"
-        api_host: "{{ apihost }}"
-        name: "{{ Win_10_1 }}"
-        node: "{{ prox_node }}"
-        state: "{{ state }}"
-    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_10_1 }}"
-      ansible.builtin.pause:
-        seconds: "{{ pause }}"
-    - name: start "{{ Win_10_2 }}"
-      proxmox_kvm:
-        api_user: "{{ apiuser }}"
-        api_password: "{{ apipass }}"
-        api_host: "{{ apihost }}"
-        name: "{{ Win_10_2 }}"
-        node: "{{ prox_node }}"
-        state: "{{ state }}"
-    - name: Pause for "{{ pause }}" seconds to start the "{{ Win_10_2 }}"
-      ansible.builtin.pause:
-        seconds: "{{ pause }}"        
     - name: start "{{ Win_10_3 }}"
       proxmox_kvm:
         api_user: "{{ apiuser }}"
@@ -138,4 +138,3 @@
         name: "{{ Win_10_3 }}"
         node: "{{ prox_node }}"
         state: "{{ state }}"
-    
