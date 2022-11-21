@@ -2,23 +2,23 @@
   tasks:
   - set_fact:
       Password: "*" # Password
-  - name: Create API container
+  - name: Create container for testing
     community.general.proxmox:
-      vmid: "500"
       node: main
       api_user: root@pam
       api_password: "{{ Password }}"
       api_host: main.pve
       password: "{{ Password }}"
-      hostname: test
-      ostemplate: 'local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.gz'
+      hostname: "test-{{ lookup('password', '/dev/null chars=ascii_lowercase,digits >      ostemplate: 'local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst'
       cores: 1
       memory: 2048
       disk: "40"
-      storage: fc_store_thin
-#      mounts: '{"mp0":"largewrxFS:/arvadosdata/,mp=/mnt/arvadosdata/"}'
-      netif: '{"net0":"name=eth0,gw=192.168.9.1,ip=192.168.9.80/24,bridge=vmbr0"}'
-      unprivileged: no
+      storage: local-lvm
+      netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=dhcp,bridge=vmbr0"}'
+      nameserver: 192.168.1.1
+      unprivileged: yes
       validate_certs: no
       onboot: yes
       description: container for testing
+      features:
+       - nesting=1
