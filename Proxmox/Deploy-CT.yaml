@@ -1,0 +1,11 @@
+# proxmox.yml
+---
+- hosts: proxmox
+  user: root
+  vars:
+    pve_node: main
+    pve_apiuser: root@pam
+    pve_apipass: *
+    pve_api_host: main.pve
+    pve_hostname: "newhostname"
+    pve_template: local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst
