@@ -1,8 +1,7 @@
 ---
 - name: Playbook to Install Packages
   hosts:
-    - debian
-    - proxmox
+    - portainer
   tasks:
   - name: Update Tailscale
     package:
