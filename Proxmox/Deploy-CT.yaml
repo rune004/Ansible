@@ -1,7 +1,7 @@
 - hosts: proxmox
-  - set_fact:
-        Password: "*" # Password
   tasks:
+  - set_fact:
+      Password: "*" # Password
   - name: Create API container
     community.general.proxmox:
       vmid: "500"
