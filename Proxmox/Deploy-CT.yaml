@@ -1,11 +1,33 @@
-# proxmox.yml
 ---
-- hosts: proxmox
+- name: Test CT Creation Play
+  hosts: proxmox
+  connection: local
+  user: root
+    vars:
+      pve_node: main
+      pve_apiuser: root@pam
+      pve_apipass: myAPIpassword
+      pve_api_host: main.pve
+      pve_hostname: "newhostname"
+      pve_template: local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst
+      pve_netif:
+        net0: "name=eth0,gw=192.168.84.1,ip=192.168.84.36/22,bridge=vmbr0"
+    roles:
+    - name: engonzal.proxmox
+      tags: pve
+  post_tasks:
+    - name: Allow CT to boot before continuing
+      pause:
+        seconds: 20
+      when: "'running' not in pve_info_state.msg"
+
+- name: Test CT Configuration Play
+  hosts: test_app
   user: root
   vars:
-    pve_node: main
-    pve_apiuser: root@pam
-    pve_apipass: *
-    pve_api_host: main.pve
-    pve_hostname: "newhostname"
-    pve_template: local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst
+    ansible_python_interpreter: /usr/bin/python3
+    package_list:
+      - vim
+  roles:
+    - name: engonzal.package
+      tags: package
