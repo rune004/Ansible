@@ -1,9 +1,9 @@
 # Ansible
 
-<h3> Ansible yaml tasks and VM's scripts </h3>
+<h1> Ansible yaml tasks and VM's scripts </h1>
 
 
-<h4> Use SSH without having to type in the password </h4>
+<h3> Use SSH without having to type in the password </h3>
 
 ssh-add ~/.ssh/id_rsa
 
@@ -11,21 +11,21 @@ eval `ssh-agent -s`
 ssh-add
 
 
-<h4> Push SSH key to nodes </h4>
+<h3> Push SSH key to nodes </h3>
 
 ssh-copy-id -i /home/rune/.ssh/id_rsa root@192.168.1.76
 
-<h4> Allow root login </h4>
+<h3> Allow root login </h3>
 
 /etc/ssh/sshd_config
 
 /etc/init.d/ssh restart
 
-<h4> Tailscale Quick Installer </h4>
+<h3> Tailscale Quick Installer </h3>
 
 curl -fsSL https://tailscale.com/install.sh | sh
 
-<h5> Proxmox LXC VPN Fix </h5>
+<h4> Proxmox LXC VPN Fix </h4>
 This solution will fix any VPN you want to run such as Tailscale and OpenVPN
 
 /etc/pve/lxc/
