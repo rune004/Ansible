@@ -6,15 +6,19 @@
 
 <p>
 inventory	= /etc/ansible/inventory/hosts
-
+<br>
 forks		= 5
+<br>
 sudo_user	= root
-
+<br>
 remote_user = root
-
+<br>
 become=True
+<br>
 become_method=sudo
+<br>
 become_user=root
+<br>
 become_ask_pass=False
 </p>
 
