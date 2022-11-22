@@ -1,5 +1,3 @@
-# Ansible
-
 <h1> Ansible yaml tasks and VM's scripts </h1>
 
 <h3> Configure Ansible.cfg </h3>
