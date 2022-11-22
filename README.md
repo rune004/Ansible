@@ -2,6 +2,20 @@
 
 <h1> Ansible yaml tasks and VM's scripts </h1>
 
+<h3> Configure Ansible.cfg </h3>
+
+inventory	= /etc/ansible/inventory/hosts
+
+forks		= 5
+sudo_user	= root
+
+remote_user = root
+
+become=True
+become_method=sudo
+become_user=root
+become_ask_pass=False
+
 
 <h3> Use SSH without having to type in the password </h3>
 
