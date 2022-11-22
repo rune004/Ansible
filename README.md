@@ -4,6 +4,7 @@
 
 <h3> Configure Ansible.cfg </h3>
 
+<p>
 inventory	= /etc/ansible/inventory/hosts
 
 forks		= 5
@@ -15,7 +16,7 @@ become=True
 become_method=sudo
 become_user=root
 become_ask_pass=False
-
+</p>
 
 <h3> Use SSH without having to type in the password </h3>
 
